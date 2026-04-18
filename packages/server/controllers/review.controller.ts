@@ -14,8 +14,17 @@ export const reviewController = {
       return res.status(404).json({ error: "Product not found" });
     }
     try {
-      const reviews = await ReivewService.getReviews(productId);
-      return res.json(reviews);
+      const product = await reviewRepo.getReviewSummary(productId);
+      if (!product) {
+        return res.status(404).json({ error: "Product does not exist" });
+      }
+      const reviews = await reviewRepo.getReviews(productId);
+      const summary = await reviewRepo.getReviewSummary(productId);
+
+      return res.json({
+        reviews,
+        summary: summary,
+      });
     } catch (err: any) {
       return res
         .status(500)
