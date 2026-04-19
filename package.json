@@ -4,17 +4,24 @@
   "type": "module",
   "private": true,
   "devDependencies": {
+    "@tanstack/eslint-plugin-query": "^5.99.0",
     "@types/bun": "latest"
+  },
+  "scripts": {
+    "dev": "bun run --cwd packages/client/Summarize-ai dev",
+    "build": "bun run --cwd packages/client/Summarize-ai build",
+    "preview": "bun run --cwd packages/client/Summarize-ai preview"
   },
   "peerDependencies": {
     "typescript": "^5"
   },
   "workspaces": [
-    "packages/*"
+    "packages/server",
+    "packages/client/Summarize-ai"
   ],
   "dependencies": {
     "@prisma/client": "^6.6.0",
-    "@tanstack/react-query": "^5.99.0",
-    "react-router-dom": "^7.14.1"
+    "@tailwindcss/vite": "^4.2.2",
+    "tailwindcss": "^4.2.2"
   }
 }

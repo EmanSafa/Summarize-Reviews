@@ -14,7 +14,7 @@ export const reviewController = {
       return res.status(404).json({ error: "Product not found" });
     }
     try {
-      const product = await reviewRepo.getReviewSummary(productId);
+      const product = await reviewRepo.getReviews(productId);
       if (!product) {
         return res.status(404).json({ error: "Product does not exist" });
       }
@@ -52,5 +52,10 @@ export const reviewController = {
         .status(500)
         .json({ error: err.message, stack: err.stack, module: "error info" });
     }
+  },
+  getProducts: async (req: Request, res: Response) => {
+    const products = await productRepo.getProducts();
+
+    return res.json(products);
   },
 };
